@@ -53,7 +53,7 @@ export default function FlightViewerClient() {
         <div className="hud-header">
           <div className="hud-title">
             <p className="eyebrow">Live ADS-B Sector</p>
-            <h1>Michigan Thumb Traffic</h1>
+            <h1>Michigan Airspace</h1>
           </div>
           <button
             ref={collapseButtonRef}

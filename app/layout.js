@@ -1,7 +1,7 @@
 import "./globals.css"
 
 export const metadata = {
-  title: "AI-R | Michigan Thumb Traffic",
+  title: "AI-R | Michigan Airspace",
   description: "Next.js port of the Michigan Thumb live air traffic viewer."
 }
 
