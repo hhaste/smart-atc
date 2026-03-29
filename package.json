@@ -1,5 +1,5 @@
 {
-  "name": "ai-r",
+  "name": "smart-atc",
   "private": true,
   "scripts": {
     "dev": "next dev",
