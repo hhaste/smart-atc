@@ -18,8 +18,8 @@ export default function FlightViewerClient() {
   const flightSearchInputRef = useRef(null)
   const hudPanelRef = useRef(null)
   const collapseButtonRef = useRef(null)
-  const hoverDetailsToggleRef = useRef(null)
   const terrainToggleRef = useRef(null)
+  const weatherToggleRef = useRef(null)
   const autoRefreshToggleRef = useRef(null)
   const autoRefreshRateInputRef = useRef(null)
   const hoverCardRef = useRef(null)
@@ -40,8 +40,8 @@ export default function FlightViewerClient() {
       flightSearchInput: flightSearchInputRef.current,
       hudPanel: hudPanelRef.current,
       collapseButton: collapseButtonRef.current,
-      hoverDetailsToggle: hoverDetailsToggleRef.current,
       terrainToggle: terrainToggleRef.current,
+      weatherToggle: weatherToggleRef.current,
       autoRefreshToggle: autoRefreshToggleRef.current,
       autoRefreshRateInput: autoRefreshRateInputRef.current,
       hoverCard: hoverCardRef.current,
@@ -149,20 +149,20 @@ export default function FlightViewerClient() {
               <h2 id="display-heading">Display</h2>
               <label className="toggle-row">
                 <input
-                  ref={hoverDetailsToggleRef}
-                  id="hoverDetailsToggle"
-                  type="checkbox"
-                  defaultChecked
-                />
-                Show aircraft hover details
-              </label>
-              <label className="toggle-row">
-                <input
                   ref={terrainToggleRef}
                   id="terrainToggle"
                   type="checkbox"
                 />
-                Show terrain map
+                Terrain map
+              </label>
+              <label className="toggle-row">
+                <input
+                  ref={weatherToggleRef}
+                  id="weatherToggle"
+                  type="checkbox"
+                  defaultChecked
+                />
+                Cloud cover
               </label>
               <label className="toggle-row">
                 <input
@@ -170,10 +170,10 @@ export default function FlightViewerClient() {
                   id="autoRefreshToggle"
                   type="checkbox"
                 />
-                Enable auto refresh
+                Auto refresh
               </label>
               <label className="setting-row" htmlFor="autoRefreshRateInput">
-                <span className="setting-label">Refreshes / min</span>
+                <span className="setting-label">Interval</span>
                 <input
                   ref={autoRefreshRateInputRef}
                   id="autoRefreshRateInput"

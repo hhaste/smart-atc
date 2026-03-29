@@ -367,7 +367,7 @@ h1 {
 .airport-list,
 .flight-list {
   display: grid;
-  gap: 10px;
+  gap: 6px;
 }
 
 .airport-list li,
