@@ -168,13 +168,13 @@ export default function FlightViewerClient() {
               <h2 id="controls-heading">Controls</h2>
               <ul className="control-list">
                 <li>
-                  <strong>Rotate:</strong> Left-drag or one-finger drag
+                  <strong>Rotate:</strong> Left-drag, one-finger drag, or Left / Right arrows
                 </li>
                 <li>
-                  <strong>Pan:</strong> Shift-drag, right-drag, two-finger drag, or WASD / arrow keys
+                  <strong>Pan:</strong> Shift-drag, right-drag, two-finger drag, WASD, or Up / Down arrows. Use E / Q for camera up / down.
                 </li>
                 <li>
-                  <strong>Zoom:</strong> Mouse wheel or pinch
+                  <strong>Zoom:</strong> Mouse wheel, pinch, or I / O
                 </li>
               </ul>
             </section>
