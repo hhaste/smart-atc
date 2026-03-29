@@ -71,8 +71,11 @@ export default function FlightViewerClient() {
             className="collapse-button"
             type="button"
             aria-expanded="true"
+            aria-label="Collapse panel"
           >
-            Collapse
+            <span className="collapse-button-icon" aria-hidden="true">
+              ⌃
+            </span>
           </button>
         </div>
 

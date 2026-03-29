@@ -165,26 +165,49 @@ body::before {
 
 h1 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 0.94;
+  line-height: 1.08;
 }
 
 .collapse-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  padding: 10px 14px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-main);
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 700;
   cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.collapse-button.is-ready {
+  opacity: 1;
+  visibility: visible;
 }
 
 .collapse-button:hover {
   background: rgba(255, 255, 255, 0.09);
+}
+
+.collapse-button-icon {
+  display: inline-block;
+  line-height: 1;
+  transform: rotate(-90deg);
+  transition: transform 700ms ease;
+}
+
+.collapse-button[aria-expanded="false"] .collapse-button-icon {
+  transform: rotate(180deg);
 }
 
 .description {
