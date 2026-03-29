@@ -1,11 +1,14 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { mountFlightViewer } from "../lib/flight-viewer-runtime"
 
+const LIVE_ATC_STREAM_URL = "https://d.liveatc.net/kdtw_app"
+
 export default function FlightViewerClient() {
   const canvasRef = useRef(null)
+  const audioRef = useRef(null)
   const refreshButtonRef = useRef(null)
   const injectConflictButtonRef = useRef(null)
   const statusBadgeRef = useRef(null)
@@ -23,6 +26,7 @@ export default function FlightViewerClient() {
   const autoRefreshRateInputRef = useRef(null)
   const hoverCardRef = useRef(null)
   const toastAlertRef = useRef(null)
+  const [isAudioMuted, setIsAudioMuted] = useState(true)
 
   useEffect(() => {
     const cleanup = mountFlightViewer({
@@ -49,6 +53,44 @@ export default function FlightViewerClient() {
     return cleanup
   }, [])
 
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) {
+      return
+    }
+
+    audio.muted = true
+
+    const playPromise = audio.play()
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {})
+    }
+  }, [])
+
+  async function handleAudioToggle() {
+    const audio = audioRef.current
+    if (!audio) {
+      return
+    }
+
+    if (isAudioMuted) {
+      audio.muted = false
+
+      try {
+        await audio.play()
+        setIsAudioMuted(false)
+      } catch {
+        audio.muted = true
+        setIsAudioMuted(true)
+      }
+
+      return
+    }
+
+    audio.muted = true
+    setIsAudioMuted(true)
+  }
+
   return (
     <div className="app-shell">
       <canvas
@@ -63,18 +105,30 @@ export default function FlightViewerClient() {
             <p className="eyebrow">Live ADS-B Sector</p>
             <h1>Detroit Approach 134.3</h1>
           </div>
-          <button
-            ref={collapseButtonRef}
-            id="collapseButton"
-            className="collapse-button"
-            type="button"
-            aria-expanded="true"
-            aria-label="Collapse panel"
-          >
-            <span className="collapse-button-icon" aria-hidden="true">
-              ⌃
-            </span>
-          </button>
+          <div className="hud-header-controls">
+            <button
+              className={`audio-toggle${isAudioMuted ? " is-muted" : ""}`}
+              type="button"
+              onClick={handleAudioToggle}
+              aria-label={isAudioMuted ? "Unmute ATC audio" : "Mute ATC audio"}
+              aria-pressed={!isAudioMuted}
+              title={isAudioMuted ? "Unmute ATC audio" : "Mute ATC audio"}
+            >
+              {isAudioMuted ? "🔇" : "🔊"}
+            </button>
+            <button
+              ref={collapseButtonRef}
+              id="collapseButton"
+              className="collapse-button"
+              type="button"
+              aria-expanded="true"
+              aria-label="Collapse panel"
+            >
+              <span className="collapse-button-icon" aria-hidden="true">
+                ⌃
+              </span>
+            </button>
+          </div>
         </div>
 
         <form
@@ -210,6 +264,15 @@ export default function FlightViewerClient() {
         ref={toastAlertRef}
         id="toastAlert"
         className="toast-alert severity-info hidden"
+        aria-hidden="true"
+      />
+      <audio
+        ref={audioRef}
+        src={LIVE_ATC_STREAM_URL}
+        autoPlay
+        muted
+        playsInline
+        preload="none"
         aria-hidden="true"
       />
     </div>

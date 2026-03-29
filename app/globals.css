@@ -136,6 +136,12 @@ body::before {
   min-width: 0;
 }
 
+.hud-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .hud-title h1 {
   font-size: clamp(1.2rem, 2.3vw, 1.75rem);
 }
@@ -208,6 +214,34 @@ h1 {
 
 .collapse-button[aria-expanded="false"] .collapse-button-icon {
   transform: rotate(180deg);
+}
+
+.audio-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(142, 227, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.audio-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.audio-toggle.is-muted {
+  border-color: rgba(255, 207, 114, 0.28);
+  color: var(--warn);
 }
 
 .description {
