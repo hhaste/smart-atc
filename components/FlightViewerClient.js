@@ -10,9 +10,7 @@ export default function FlightViewerClient() {
   const injectConflictButtonRef = useRef(null)
   const statusBadgeRef = useRef(null)
   const flightCountRef = useRef(null)
-  const feedModeRef = useRef(null)
   const lastUpdatedRef = useRef(null)
-  const sectorNameRef = useRef(null)
   const airportListRef = useRef(null)
   const flightListRef = useRef(null)
   const feedNoteRef = useRef(null)
@@ -34,9 +32,7 @@ export default function FlightViewerClient() {
       injectConflictButton: injectConflictButtonRef.current,
       statusBadge: statusBadgeRef.current,
       flightCount: flightCountRef.current,
-      feedMode: feedModeRef.current,
       lastUpdated: lastUpdatedRef.current,
-      sectorName: sectorNameRef.current,
       airportList: airportListRef.current,
       flightList: flightListRef.current,
       feedNote: feedNoteRef.current,
@@ -85,7 +81,7 @@ export default function FlightViewerClient() {
         <div className="hud-header">
           <div className="hud-title">
             <p className="eyebrow">Live ADS-B Sector</p>
-            <h1>Michigan Airspace</h1>
+            <h1>Detroit Approach 134.3</h1>
           </div>
           <button
             ref={collapseButtonRef}
@@ -99,12 +95,6 @@ export default function FlightViewerClient() {
         </div>
 
         <div id="hudContent" className="hud-content">
-          <p className="description">
-            Live aircraft inside a square sector covering KDET, KDTW, and KFNT.
-            The X/Z plane is the Detroit-area map sector, and altitude is rendered
-            upward in 3D. Runway layouts are mapped from FAA runway geometry.
-          </p>
-
           <div className="action-row">
             <button
               ref={refreshButtonRef}
@@ -117,10 +107,10 @@ export default function FlightViewerClient() {
             <button
               ref={injectConflictButtonRef}
               id="injectConflictButton"
-              className="secondary-action"
+              className="secondary-action danger-action"
               type="button"
             >
-              Inject Conflict
+              Conflict
             </button>
             <span
               ref={statusBadgeRef}
@@ -139,21 +129,9 @@ export default function FlightViewerClient() {
               </strong>
             </div>
             <div className="stat-card">
-              <span className="stat-label">Feed Mode</span>
-              <strong ref={feedModeRef} id="feedMode" className="stat-value">
-                Waiting
-              </strong>
-            </div>
-            <div className="stat-card">
               <span className="stat-label">Last Update</span>
               <strong ref={lastUpdatedRef} id="lastUpdated" className="stat-value">
                 Waiting
-              </strong>
-            </div>
-            <div className="stat-card">
-              <span className="stat-label">Sector</span>
-              <strong ref={sectorNameRef} id="sectorName" className="stat-value">
-                Detroit Approach
               </strong>
             </div>
           </div>
@@ -162,21 +140,6 @@ export default function FlightViewerClient() {
             <section className="panel" aria-labelledby="airports-heading">
               <h2 id="airports-heading">Airports</h2>
               <ul ref={airportListRef} id="airportList" className="airport-list" />
-            </section>
-
-            <section className="panel" aria-labelledby="controls-heading">
-              <h2 id="controls-heading">Controls</h2>
-              <ul className="control-list">
-                <li>
-                  <strong>Rotate:</strong> Left-drag, one-finger drag, or Left / Right arrows
-                </li>
-                <li>
-                  <strong>Pan:</strong> Shift-drag, right-drag, two-finger drag, WASD, or Up / Down arrows. Use E / Q for camera up / down.
-                </li>
-                <li>
-                  <strong>Zoom:</strong> Mouse wheel, pinch, or I / O
-                </li>
-              </ul>
             </section>
 
             <section className="panel" aria-labelledby="display-heading">
